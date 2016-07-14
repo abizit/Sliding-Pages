@@ -1,4 +1,4 @@
-# Page Slider
+1# Page Slider
 
 A Simple plugin to make single page websites scroll horizontally on clicks.
 
@@ -16,6 +16,9 @@ http://abhijeetbajracharya.com/
 <p>The JavaScript file pgSlider.js (or its minified version pgSlider.min.js)</p>
 <p>The CSS file pgSlider.css</p>
 
+## Issues
+<p>Works only if there are four or more pages</p>
+<p>The transition is still a bit buggy</p>
 
 ### Contributing
 
