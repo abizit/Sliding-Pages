@@ -1,0 +1,69 @@
+html,
+body,
+#ps-container {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.ps-nav div {
+  height: 20px;
+  width: 20px;
+  background: #000;
+  position: fixed;
+  top: 50%;
+  z-index: 4;
+}
+.ps-nav div.ps-nav-right {
+  right: 0;
+}
+#ps-container {
+  overflow-x: hidden;
+  position: relative;
+}
+.ps-wrapper section {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0%;
+  height: 100%;
+  visibility: hidden;
+  z-index: 1;
+  background: #fff;
+}
+.ps-wrapper .pg-current,
+.ps-wrapper .pg-left,
+.ps-wrapper .pg-right {
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  z-index: 2;
+  visibility: visible;
+}
+.ps-wrapper .pg-left {
+  left: -100%;
+}
+.ps-wrapper .pg-right {
+  left: 100%;
+}
+.ps-wrapper .pg-left-outer {
+  left: -200%;
+}
+.ps-wrapper .pg-right-outer {
+  left: 200%;
+}
+.move-left .pg-current,
+.move-left .pg-left,
+.move-left .pg-right,
+.move-left .pg-right-outer {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+.move-right .pg-current,
+.move-right .pg-left,
+.move-right .pg-right,
+.move-right .pg-left-outer {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
