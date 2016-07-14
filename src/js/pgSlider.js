@@ -1,13 +1,26 @@
+/**
+ * pgSlider.js v1.0.1
+ * http://abhijeetbajracharya.com/demo/sliding-pages/
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * Copyright 2016, Abhijeet Bajracharya
+ * http://abhijeetbajracharya.com
+ */
 var Class = (function () {
     function Class() {
     }
     Class.prototype.add = function (element, className) {
+        //adds the class
         element.classList.add(className);
     };
     Class.prototype.remove = function (element, className) {
+        //removes the class
         element.classList.remove(className);
     };
     Class.prototype.has = function (element, className) {
+        // returns true or false
         return element.classList.contains(className);
     };
     return Class;
@@ -23,12 +36,13 @@ var PageSlider = (function () {
         if (this._sectionsCount > 3) {
             this._class.add(this._container, 'ps-outer');
         }
-    }
+    } //constructor
     PageSlider.prototype.initalize = function () {
         if (this._sectionsCount < 4) {
             return false;
         }
         this._current = 0;
+        // Setup Left Right Navigation
         var that = this, navLeft = document.createElement('div'), navRight = document.createElement('div'), nav = document.createElement('nav');
         navLeft.className = 'ps-nav-left';
         navRight.className = 'ps-nav-right';
@@ -42,11 +56,13 @@ var PageSlider = (function () {
         navRight.addEventListener('click', function () {
             that.navigate('right');
         });
+        //Setup initial Classes to the PageSlider
         this._class.add(this._sections[this._current], 'pg-current');
         this._class.add(this._sections[this._current + 1], 'pg-right');
         this._class.add(this._sections[this._sectionsCount - 1], 'pg-left');
     };
     PageSlider.prototype.navigate = function (direction) {
+        //check if transition is still happening
         if (this.isSliding) {
             return false;
         }
@@ -57,6 +73,7 @@ var PageSlider = (function () {
             "MozTransition": "transitionend",
             "WebkitTransition": "webkitTransitionEnd"
         }, nextSection;
+        //Finds which transtionEnd is happening
         function transitionFinder() {
             for (var t in transitions) {
                 if (that._container.style[t] !== undefined) {
@@ -94,7 +111,7 @@ var PageSlider = (function () {
             that.isSliding = false;
         };
         this._sections[this._current].addEventListener(transition, transionEnd);
-    };
+    }; //navigate
     return PageSlider;
 }());
 var pageSlider = new PageSlider;
