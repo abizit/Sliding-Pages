@@ -1,6 +1,6 @@
-1# Page Slider
+## Page Slider
 
-A Simple plugin to make single page websites scroll horizontally on clicks.
+A Simple pure JavaScript plugin to make single page websites scroll horizontally on clicks.
 
 [![Typescript](https://img.shields.io/badge/Typescript-1.8-red.svg)]()
 [![Build](https://img.shields.io/badge/Build-beta_1.0.1-blue.svg)]()
@@ -28,14 +28,14 @@ http://abhijeetbajracharya.com/
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
 
-### Contributing Pre-requisities
+### Contributing prerequisites
 
 1. Typescript Compiler
 
 ### Built With
 
 * Node Typescript Compiler for Typescript.
-* Grunt for LESS compiling and JS minification.
+* Grunt for LESS compiling and JavaScript minification.
 
 ## License
 

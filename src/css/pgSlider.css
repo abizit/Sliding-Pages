@@ -1,6 +1,5 @@
 html,
-body,
-#ps-container {
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -20,6 +19,8 @@ body,
 #ps-container {
   overflow-x: hidden;
   position: relative;
+  width: 100%;
+  min-height: 100%;
 }
 .ps-wrapper section {
   position: absolute;
