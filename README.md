@@ -10,6 +10,9 @@ A Simple pure JavaScript plugin to make single page websites scroll horizontally
 Abhijeet Bajracharya
 http://abhijeetbajracharya.com/
 
+#Demo
+http://abhijeetbajracharya.com/demo/sliding-pages/
+
 
 ## Usage
 <p>You will need to include:</p>
