@@ -20,8 +20,14 @@ var PageSlider = (function () {
         this._wrapper = this._container.querySelector('div.ps-wrapper');
         this._sections = Array.prototype.slice.call(this._wrapper.querySelectorAll('section'));
         this._sectionsCount = this._sections.length;
+        if (this._sectionsCount > 3) {
+            this._class.add(this._container, 'ps-outer');
+        }
     }
     PageSlider.prototype.initalize = function () {
+        if (this._sectionsCount < 4) {
+            return false;
+        }
         this._current = 0;
         var that = this, navLeft = document.createElement('div'), navRight = document.createElement('div'), nav = document.createElement('nav');
         navLeft.className = 'ps-nav-left';

@@ -27,13 +27,20 @@ class PageSlider {
 			this._wrapper = this._container.querySelector('div.ps-wrapper');
 			this._sections = Array.prototype.slice.call(this._wrapper.querySelectorAll('section'));
 			this._sectionsCount = this._sections.length;
+			if(this._sectionsCount > 3){
+				this._class.add(this._container,'ps-outer');
+			}
 
 
 			// console.log(this._container,this._wrapper,this._sectionsCount);
     }//constructor
 
 		initalize(){
+			if(this._sectionsCount < 4){
+				return false
+			}
 			this._current = 0;
+
 			// Setup Left Right Navigation
 			var that = this,
 					navLeft = document.createElement('div'),
@@ -65,6 +72,7 @@ class PageSlider {
 		}
 
 		navigate(direction:string){
+
 			//check if transition is still happening
 			if(this.isSliding){
 				// console.log('sliding');
