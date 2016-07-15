@@ -31,6 +31,7 @@ class PageSlider {
 		private _class:Class = new Class;
 		private _current:number;
 		public isSliding:Boolean = false;
+		private _transition:any;
 
     constructor() {
 			this._container = document.getElementById('ps-container');
@@ -52,7 +53,22 @@ class PageSlider {
 			var that = this,
 					navLeft = document.createElement('div'),
 					navRight = document.createElement('div'),
-					nav = document.createElement('nav');
+					nav = document.createElement('nav'),
+					transitions = {
+			            "transition": "transitionend",
+			            "OTransition": "oTransitionEnd",
+			            "MozTransition": "transitionend",
+			            "WebkitTransition": "webkitTransitionEnd"
+			        };
+					//Finds which transtionEnd is happening
+				    function transitionFinder() {
+				        for (var t in transitions) {
+				            if (that._sections[that._current].style[t] !== undefined) {
+				                return transitions[t];
+				            }
+				        }
+				    }
+				    this._transition = transitionFinder();
 
 					navLeft.className = 'ps-nav-left';
 					navRight.className = 'ps-nav-right';
@@ -85,44 +101,33 @@ class PageSlider {
 
 				return false;
 			}
-			this.isSliding = true;
+
 
 				var left = this._current == 0 ? this._sectionsCount - 1 : this._current - 1,
         right = this._current < this._sectionsCount - 1 ? this._current + 1 : 0,
         mvDir = direction === 'right' ? 'left' : 'right',
         that = this,
-        transitions = {
-            "transition": "transitionend",
-            "OTransition": "oTransitionEnd",
-            "MozTransition": "transitionend",
-            "WebkitTransition": "webkitTransitionEnd"
-        },
         nextSection;
-
-    //Finds which transtionEnd is happening
-    function transitionFinder() {
-        for (var t in transitions) {
-            if (that._container.style[t] !== undefined) {
-                return transitions[t];
-            }
-        }
-    }
-    var transition = transitionFinder();
 
 	if( direction === 'right' ) {
 		nextSection = right < this._sectionsCount - 1 ? right + 1 : 0;
+
 
 	}
 	else if( direction === 'left' ) {
 		nextSection = left > 0 ? left - 1 : this._sectionsCount - 1;
 
 	}
-	this._class.add(this._container, 'move-' + mvDir);
+	this.isSliding = true;
 	this._class.add(this._sections[nextSection],'pg-'+ direction +'-outer');
+	this._class.add(this._container, 'move-' + mvDir);
+
+
 
 
     var transionEnd = function() {
-		that._sections[that._current].removeEventListener(transition, transionEnd);
+
+		that._sections[nextSection].removeEventListener(that._transition, transionEnd);
 		that._sections.forEach(
 			function(el , i){
 				el.className = 'ps-page'
@@ -130,7 +135,7 @@ class PageSlider {
 		)
 
 		if(direction === 'right'){
-			
+
 			that._class.add(that._sections[that._current],'pg-left');
 			that._class.add(that._sections[right],'pg-current')
 			that._class.add(that._sections[nextSection],'pg-right')
@@ -147,7 +152,10 @@ class PageSlider {
 		that.isSliding = false;
 
     }
-    this._sections[this._current].addEventListener(transition, transionEnd);
+	
+    this._sections[nextSection].addEventListener(this._transition, transionEnd);
+
+
 }//navigate
 
 }

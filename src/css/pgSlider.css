@@ -35,13 +35,20 @@ body {
 }
 .ps-outer .ps-wrapper .pg-current,
 .ps-outer .ps-wrapper .pg-left,
-.ps-outer .ps-wrapper .pg-right {
+.ps-outer .ps-wrapper .pg-right,
+.ps-outer .ps-wrapper .pg-left-outer,
+.ps-outer .ps-wrapper .pg-right-outer {
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  z-index: 2;
   visibility: visible;
+  backface-visibility: hidden;
+}
+.ps-outer .ps-wrapper .pg-current,
+.ps-outer .ps-wrapper .pg-left,
+.ps-outer .ps-wrapper .pg-right {
+  z-index: 2;
 }
 .ps-outer .ps-wrapper .pg-left {
   left: -100%;
