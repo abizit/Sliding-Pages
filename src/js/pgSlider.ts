@@ -159,4 +159,5 @@ class PageSlider {
 }
 
 var pageSlider = new PageSlider;
+
 pageSlider.initalize();
